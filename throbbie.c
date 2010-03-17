@@ -65,11 +65,7 @@ void next(uint8_t* r, uint8_t* g, uint8_t* b) {
 	static uint8_t r_index = 0;
 	static uint8_t g_index = 128;
 	static uint8_t b_index = 0;
-/*	
-	*r = sinTable256[r_index++];
-    *g = sinTable256[g_index++];
-	*b = sinTable256[b_index++];
-*/
+
     *r = pgm_read_byte(&sinTable256[r_index++]);
     *g = pgm_read_byte(&sinTable256[g_index++]);
     *b = pgm_read_byte(&sinTable256[b_index++]);
@@ -110,12 +106,11 @@ ISR(TIM0_COMPA_vect) {
 }
 
 int main(void) {
-    //DDxn, PORTxn, and PINxn
+
 	MCUSR &= ~(0x08);
     WDTCR = 0;
     init_ports();
     init_timer();
-
 
     sei();
 
