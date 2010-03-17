@@ -4,11 +4,11 @@ Throbbie, the over engineered "throwie"
 Throbbie is a pulsating throwie, designed to be more visually
 interesting than a typical throwie.
 
-The code in this repository contains the code for the ATtiny13a 8-bit,
-8-pin microcontroller, which is used for generating the PWM signals to
-a tri-color LED.
+This repository contains code for an ATtiny13a, which is an 8-bit,
+8-pin microcontroller.  The ATtiny13a is used for generating the PWM
+signals to a tri-color LED.
 
-The current development environment is AVRStudio4, an AVR JTAG ICE
+The current development environment is AVRStudio4, an AVR JTAGICE
 mkII, and an STK500 development board.
 
 -remicles
