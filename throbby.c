@@ -46,8 +46,8 @@ static const uint8_t sinTable256[256] PROGMEM= {
 
 
 void init_ports() {
-    DDRB |= 0x03;
-    PORTB &= ~(0x03);
+    DDRB |= 0x07;
+    PORTB &= ~(0x07);
 }
 
 void init_timer() {
@@ -63,16 +63,19 @@ void init_timer() {
 
 void next(uint8_t* r, uint8_t* g, uint8_t* b) {
 	static uint8_t r_index = 0;
-	static uint8_t g_index = 128;
-	static uint8_t b_index = 0;
+	static uint8_t g_index = 85;
+	static uint8_t b_index = 170;
 /*	
 	*r = sinTable256[r_index++];
     *g = sinTable256[g_index++];
 	*b = sinTable256[b_index++];
 */
-    *r = pgm_read_byte(&sinTable256[r_index++]);
-    *g = pgm_read_byte(&sinTable256[g_index++]);
-    *b = pgm_read_byte(&sinTable256[b_index++]);
+	r_index += 1;
+	g_index += 2;
+	b_index += 3;
+    *r = pgm_read_byte(&sinTable256[r_index]);
+    *g = pgm_read_byte(&sinTable256[g_index]);
+    *b = pgm_read_byte(&sinTable256[b_index]);
 }
 
 
@@ -85,7 +88,7 @@ ISR(TIM0_COMPA_vect) {
     uint8_t new_portb = 0;
 
     if(count < r) {
-        new_portb |= 0x04;
+        new_portb |= 0x01;
     }
 
     if(count < g) {
@@ -93,7 +96,7 @@ ISR(TIM0_COMPA_vect) {
     }
 
     if(count < b) {
-        new_portb |= 0x01;
+        new_portb |= 0x04;
     }
 
 	if(count == 0) {
