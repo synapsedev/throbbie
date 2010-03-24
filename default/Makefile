@@ -37,7 +37,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = throbby.o 
+OBJECTS = throbbie.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -46,7 +46,7 @@ LINKONLYOBJECTS =
 all: $(TARGET) throbby.hex throbby.eep throbby.lss size
 
 ## Compile
-throbby.o: ../throbby.c
+throbbie.o: ../throbbie.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
